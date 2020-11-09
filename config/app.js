@@ -16,11 +16,11 @@ const app = express();
 
 
 // Passport config
-require('./config/passport')(passport);
+require('./passport')(passport);
 
 
 // DB Configuration
-const DB = require('./config/keys').MongoURI;
+const DB = require('./keys').MongoURI;
 // Connect to Mongo
 mongoose.connect(DB, {useNewUrlParser: true, useUnifiedTopology: true});
 let mongoDB = mongoose.connection;
@@ -69,8 +69,8 @@ app.use((req, res, next) => {
 
 
 // Routes
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use('/', require('../routes/index'));
+app.use('/users', require('../routes/users'));
 
 
 // Local host config
