@@ -7,6 +7,8 @@ const logger = require('morgan');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+require('dotenv').config();
+
 
 
 
@@ -20,7 +22,7 @@ require('./config/passport')(passport);
 
 
 // DB Configuration
-const DB = require('./config/keys').MongoURI;
+const DB = process.env.MONGO_URI;
 // Connect to Mongo
 mongoose.connect(DB, {useNewUrlParser: true, useUnifiedTopology: true});
 let mongoDB = mongoose.connection;
