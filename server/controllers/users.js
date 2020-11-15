@@ -13,12 +13,12 @@ const { Passport } = require('passport');
 module.exports = {
     // Login page
     displayLoginPage: (req, res) => {
-        res.render('login');
+        res.render('login', { title: 'Login - Passport->LocalStrategy' });
     },
 
     // Register page
     displayRegisterPage: (req, res) => {
-        res.render('register');
+        res.render('register', { title: 'Register - Passport->LocalStrategy' });
     },
 
     // Register handle
@@ -44,6 +44,7 @@ module.exports = {
         // check errors
         if (formErrors.length > 0) {
             res.render('register', {
+                title: 'Register - Passport->LocalStrategy',
                 formErrors,
                 name,
                 email,
@@ -60,6 +61,7 @@ module.exports = {
                 if (user) {
                     // render errors and failed to register user
                     res.render('register', {
+                        title: 'Login - Passport->LocalStrategy',
                         formErrors,
                         name,
                         email,
