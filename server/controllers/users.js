@@ -23,27 +23,28 @@ module.exports = {
 
     // Register handle
     processUserRegistration: (req, res) => {
+        // grab form inputs
         const { name, email, password, password2 } = req.body;
-        let errors = [];
+        let formErrors = [];
 
         // PASSWORD VALIDATIONS
         // check required fields
         if (!name || !email || !password || !password2) {
-            errors.push({ msg: 'Please fill in all fields' });
+            formErrors.push({ msg: 'Please fill all the require (*) fields' });
         }
         // check password match
         if (password !== password2) {
-            errors.push({ msg: 'Passwords do not match' });
+            formErrors.push({ msg: 'Passwords do not match' });
         }
         // check password length
         if(password.length < 6) {
-            errors.push({ msg: 'Password must be at least 6 characters.' });
+            formErrors.push({ msg: 'Password must be at least 6 characters.' });
         }
 
         // check errors
-        if (errors.length > 0) {
+        if (formErrors.length > 0) {
             res.render('register', {
-                errors,
+                formErrors,
                 name,
                 email,
                 password,
@@ -53,11 +54,13 @@ module.exports = {
             // validation passed
             User.findOne({ email: email })
             .then(user => {
-                // if user exists
-                errors.push({  msg: 'Email is already registered' });
+                // if user already exists
+                formErrors.push({  msg: 'Email is already registered' });
+                // if user = false (user is false because the search (User.findOne) was not successfully)
                 if (user) {
+                    // render errors and failed to register user
                     res.render('register', {
-                        errors,
+                        formErrors,
                         name,
                         email,
                         password,
@@ -84,7 +87,8 @@ module.exports = {
                         .catch(err => console.log(err));
                     }));
                 }
-            });
+            })
+            .catch(err => console.log(err));
         }
     },
 

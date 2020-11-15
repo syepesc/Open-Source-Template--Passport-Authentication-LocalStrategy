@@ -2,10 +2,8 @@
   "name": "passport-authentication",
   "version": "1.0.0",
   "description": "Express app template for user authentication using Passport strategies",
-  "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node ./server.js"
   },
   "repository": {
     "type": "git",

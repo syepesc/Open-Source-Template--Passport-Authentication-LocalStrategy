@@ -12,7 +12,9 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/users');
 
 module.exports = function(passport) {
+    // Start passport
     passport.use(
+        // use passport local strategy
         new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
             // Match user
             User.findOne({ email: email })
@@ -32,6 +34,7 @@ module.exports = function(passport) {
                     }
                 });
             })
+            // if no user found -> catch error
             .catch(err => console.log(err));
         })
     );
