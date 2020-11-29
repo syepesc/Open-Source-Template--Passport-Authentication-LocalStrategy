@@ -11,6 +11,11 @@ const { Passport } = require('passport');
 
 // USERS CONTROLLERS
 module.exports = {
+    // Dashboard page
+    displayDashboardPage: (req, res) => {
+        res.render('dashboard', { title: 'Dashboard - Passport->LocalStrategy', name: req.user.name });
+    },
+    
     // Login page
     displayLoginPage: (req, res) => {
         res.render('login', { title: 'Login - Passport->LocalStrategy' });

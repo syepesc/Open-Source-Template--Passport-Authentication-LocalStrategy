@@ -9,6 +9,9 @@ let usersController = require('../controllers/users');
 
 
 // ROUTES
+// GET - Dashboard page
+router.get('/dashboard', ensureAuthentication, usersController.displayDashboardPage);
+
 // GET - Login page
 router.get('/login', usersController.displayLoginPage);
 

@@ -13,9 +13,6 @@ let indexController = require('../controllers/index');
 // GET - Home page
 router.get('/', indexController.displayHomePage);
 
-// GET - Dashboard page
-router.get('/dashboard', ensureAuthentication, indexController.displayDashboardPage);
-
 
 
 module.exports = router;
